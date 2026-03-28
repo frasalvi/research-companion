@@ -36,9 +36,15 @@ If the user also has the **Academic Writing Agents** plugin installed, you may a
 
 ### Phase 1: SEED — Understand the Problem Space
 
-**Goal:** Understand what the researcher cares about, what's bugging them, and what constraints they have.
+**Goal:** Understand what the researcher cares about, what's bugging them, and what constraints they have. Also check for prior work on this topic.
 
-Before deploying any agents, have a brief conversation:
+**Prior evaluation check:** Before interviewing, search for prior evaluations:
+1. Look for `research-evaluations/*.md` files in the current project directory and in `~/.claude/projects/*/memory/`.
+2. If a prior evaluation exists for a similar topic, present a brief summary: "You explored [topic] on [date]. Verdict was [X]. Key concern was [Y]."
+3. Ask: "Want to revisit this with fresh eyes, or start from the prior evaluation?"
+4. If the prior verdict was PARK, check whether the "revisit conditions" have been met.
+
+**Interview (if no prior evaluation or user wants fresh start):**
 
 1. **What's the problem space?** Get the broad area of interest.
 2. **What's bugging you?** What feels wrong, missing, or poorly done in this field? (This is the richest source of good ideas — problems that make you want to "scream" are often problems worth solving.)
@@ -168,6 +174,40 @@ For PURSUE ideas, the "first step" must be:
 For PARK ideas, note what would need to change for them to become PURSUE (timing shift, new tool/dataset, collaborator).
 
 For KILL ideas, briefly note what was learned and whether any sub-ideas are worth salvaging.
+
+### Save Evaluation Results
+
+After presenting the final verdict, persist the evaluation:
+
+1. **Determine save location:** Use the current project's memory directory, or if not in a project, use `~/.claude/projects/-Users-<user>/memory/`.
+2. **Create directory:** `research-evaluations/` if it doesn't exist.
+3. **Write evaluation file:** `research-evaluations/YYYY-MM-DD-<topic-slug>.md` containing:
+   ```markdown
+   ---
+   date: YYYY-MM-DD
+   topic: <topic>
+   verdict: PURSUE | PARK | KILL
+   nugget: <one-sentence key insight>
+   ---
+   # Evaluation: <Topic>
+
+   ## Verdict: <PURSUE/PARK/KILL>
+   <2-3 sentence reasoning>
+
+   ## Dimension Scores
+   <table from Phase 3>
+
+   ## Key Concerns
+   - <top concerns>
+
+   ## Watch List
+   <from research-strategist, if available>
+
+   ## Revisit Conditions
+   <what would need to change for a PARK to become PURSUE, or a KILL to be reconsidered>
+   ```
+4. **Update MEMORY.md index:** Add a one-line entry linking to the evaluation file.
+5. Confirm to the user: "Evaluation saved. I'll check for this next time you explore a similar topic."
 
 ---
 

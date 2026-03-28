@@ -133,9 +133,22 @@ These principles, derived from patterns in high-impact research, guide all agent
 - **RS7: Comparative Advantage** — "Research space is high-dimensional; find your unique corner"
 - **RS8: Timing Awareness** — "Impact = skill x domain importance at this moment"
 
+## Persistent Evaluations (NEW in v1.1)
+
+Evaluation results are now **saved to disk** so they persist across sessions:
+
+- After each session, verdicts are written to `research-evaluations/YYYY-MM-DD-<topic>.md`
+- On subsequent sessions, the system **checks for prior evaluations** of similar topics before starting fresh
+- PARK'd ideas include "revisit conditions" — what would need to change to reconsider
+- The Research Strategist now outputs a **watch list** (search terms, key researchers, venues to monitor) for competitive tracking
+- The Idea Critic checks for prior evaluations to avoid re-evaluating killed ideas unless conditions have changed
+
+This means your research thinking accumulates over time rather than starting from scratch each session.
+
 ## Pairs Well With
 
 - [**Academic Writing Agents**](https://github.com/andrehuang/academic-writing-agents) — 12 agents for reviewing, auditing, drafting, and polishing academic papers. Research Companion handles the "what to write" question; Academic Writing Agents handles the "how to write it" question.
+- [**Claude-Claw**](https://github.com/andrehuang/claude-claw) — OpenClaw-inspired enhancements for session continuity, task management, and memory architecture. Provides `/handoff` for saving session state and `/manager` for tracking research tasks.
 
 ## Philosophy
 

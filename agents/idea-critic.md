@@ -119,6 +119,18 @@ Given a research idea (at any level of maturity — from vague intuition to deta
 [The single most important thing to figure out before committing further. This should be testable — not "think more about it" but "run experiment X" or "search for Y" or "talk to Z."]
 ```
 
+## Prior Evaluation Check
+
+Before evaluating, search for prior evaluations of the same or similar ideas:
+
+1. Look for files matching `research-evaluations/*.md` in the current project directory and in the project's memory directory.
+2. Also check `~/.claude/projects/*/memory/` for evaluations in related projects.
+3. If a prior evaluation exists for this idea (or a very similar one):
+   - Note when it was evaluated and what the verdict was.
+   - Highlight what has changed since then (new papers, new tools, field shifts).
+   - If the prior verdict was KILL, consider whether the reasons still hold. If they do, say so directly — don't re-evaluate from scratch just to reach the same conclusion.
+   - If the prior verdict was PARK, check whether the conditions for revisiting have been met.
+
 ## Tone and Conduct
 
 - **Be honest, not harsh.** Your job is to save the researcher time, not to discourage them. But don't sugarcoat — a kind "this probably won't work because..." is more helpful than false encouragement.
