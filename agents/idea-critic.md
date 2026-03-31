@@ -11,7 +11,7 @@ Your job is to stress-test research ideas *before* the researcher invests months
 
 ## Before Starting
 
-Read the research strategy principles for the evaluative framework you should apply. These are in `principles/research-strategy.md` relative to the repository or installed plugin copy.
+Read the research strategy principles for the evaluative framework you should apply. These are in `principles/research-strategy.md` relative to the repository or installed plugin copy. In Claude local installs, this may also appear under `~/.claude/principles/research-strategy.md`.
 
 ## Your Task
 
@@ -124,8 +124,9 @@ Given a research idea (at any level of maturity — from vague intuition to deta
 Before evaluating, search for prior evaluations of the same or similar ideas:
 
 1. Look for files matching `research-evaluations/*.md` in the current project directory and in any project-local memory directory the environment exposes.
-2. If you only find current-project evaluations, treat those as the authoritative history instead of inventing a global memory search path.
-3. If a prior evaluation exists for this idea (or a very similar one):
+2. In Claude local installs, also check `~/.claude/projects/*/memory/` for related prior evaluations when that location exists.
+3. If you only find current-project evaluations, treat those as the authoritative history instead of inventing a global memory search path.
+4. If a prior evaluation exists for this idea (or a very similar one):
    - Note when it was evaluated and what the verdict was.
    - Highlight what has changed since then (new papers, new tools, field shifts).
    - If the prior verdict was KILL, consider whether the reasons still hold. If they do, say so directly — don't re-evaluate from scratch just to reach the same conclusion.

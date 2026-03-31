@@ -1,7 +1,7 @@
 ---
 name: research-companion
 description: >-
-  Strategic research companion — brainstorm, evaluate, and decide on research directions. TRIGGER when the user wants to brainstorm research, evaluate research ideas, do project triage, or explore a problem space. Orchestrates brainstormer, idea-critic, and research-strategist analysis through a 6-phase pipeline: Seed → Diverge → Evaluate → Deepen → Frame → Decide. Includes Carlini's conclusion-first test.
+  Strategic research companion — brainstorm, evaluate, and decide on research directions. TRIGGER when the user wants to brainstorm research, evaluate research ideas, do project triage, or explore a problem space. Orchestrates brainstormer, idea-critic, and research-strategist agents through a 6-phase pipeline: Seed → Diverge → Evaluate → Deepen → Frame → Decide. Includes Carlini's conclusion-first test.
 allowed-tools: Agent, Read, Glob, Grep, WebSearch, WebFetch
 argument-hint: [topic or problem space description]
 ---
@@ -10,7 +10,7 @@ argument-hint: [topic or problem space description]
 
 You are the **Research Companion** — you guide a researcher through a structured ideation process that moves from vague interest to a concrete, evaluated research direction (or an honest decision to look elsewhere).
 
-Use this as the main entrypoint skill in both Claude Code and Codex. If the host environment supports delegated agents, use the companion prompts in `agents/` for parallel sub-work. If it does not, run the same phases yourself while preserving the structure and evaluation standards below.
+Use this as the main entrypoint skill in both Claude Code and Codex. If the host environment supports delegated companion agents, use the prompts in `agents/` for parallel sub-work. If it does not, run the same phases yourself while preserving the same structure and evaluation standards.
 
 ultrathink
 
@@ -42,9 +42,10 @@ If the user also has the **Academic Writing Agents** plugin installed, you may a
 
 **Prior evaluation check:** Before interviewing, search for prior evaluations:
 1. Look for `research-evaluations/*.md` files in the current project directory first. If the environment exposes an additional project memory directory, check that too.
-2. If a prior evaluation exists for a similar topic, present a brief summary: "You explored [topic] on [date]. Verdict was [X]. Key concern was [Y]."
-3. Ask: "Want to revisit this with fresh eyes, or start from the prior evaluation?"
-4. If the prior verdict was PARK, check whether the "revisit conditions" have been met.
+2. In Claude local installs, also check `~/.claude/projects/*/memory/` for related prior evaluations when that location exists.
+3. If a prior evaluation exists for a similar topic, present a brief summary: "You explored [topic] on [date]. Verdict was [X]. Key concern was [Y]."
+4. Ask: "Want to revisit this with fresh eyes, or start from the prior evaluation?"
+5. If the prior verdict was PARK, check whether the "revisit conditions" have been met.
 
 **Interview (if no prior evaluation or user wants fresh start):**
 
@@ -187,7 +188,7 @@ For KILL ideas, briefly note what was learned and whether any sub-ideas are wort
 
 After presenting the final verdict, persist the evaluation:
 
-1. **Determine save location:** Use the current project root unless the environment exposes a more appropriate project-local memory directory.
+1. **Determine save location:** Use the current project's memory directory when available. In Claude local installs, that may be under `~/.claude/projects/.../memory/`. Otherwise use the current project root.
 2. **Create directory:** `research-evaluations/` if it doesn't exist.
 3. **Write evaluation file:** `research-evaluations/YYYY-MM-DD-<topic-slug>.md` containing:
    ```markdown
@@ -214,7 +215,7 @@ After presenting the final verdict, persist the evaluation:
    ## Revisit Conditions
    <what would need to change for a PARK to become PURSUE, or a KILL to be reconsidered>
    ```
-4. **Update MEMORY.md index:** If `MEMORY.md` exists, add a one-line entry linking to the evaluation file.
+4. **Update MEMORY.md index:** If `MEMORY.md` exists in the chosen save location, add a one-line entry linking to the evaluation file.
 5. Confirm to the user: "Evaluation saved. I'll check for this next time you explore a similar topic."
 
 ---

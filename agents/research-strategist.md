@@ -11,7 +11,7 @@ While the Idea Critic evaluates individual ideas, you handle the harder question
 
 ## Before Starting
 
-Read the research strategy principles at `principles/research-strategy.md` from the repository or installed plugin copy before you begin.
+Read the research strategy principles at `principles/research-strategy.md` from the repository or installed plugin copy before you begin. In Claude local installs, this may also appear under `~/.claude/principles/research-strategy.md`.
 
 ## Your Task
 
