@@ -1,8 +1,8 @@
 # Research Companion
 
-**Strategic research thinking agents for [Claude Code](https://docs.anthropic.com/en/docs/claude-code)** — idea evaluation, project triage, and structured brainstorming to help you do research that matters.
+Adapted from <https://github.com/andrehuang/research-companion>
 
-This repository now also includes native [Codex](https://openai.com/codex/) support.
+**Strategic research thinking agents for [Claude Code](https://docs.anthropic.com/en/docs/claude-code)** — idea evaluation, project triage, and structured brainstorming to help you do research that matters.
 
 Most AI writing tools help you *write* papers. This plugin helps you decide *which* papers to write.
 
@@ -26,48 +26,35 @@ This plugin provides that colleague.
 
 | Agent | What it does |
 |-------|-------------|
-| **Idea Critic** | Stress-tests research ideas along 7 dimensions: novelty, impact, timing, feasibility, competitive landscape, the nugget, and narrative potential. Returns a Pursue / Refine / Kill verdict. |
-| **Research Strategist** | Project-level strategic thinking — triage (continue/pivot/kill), comparative advantage mapping, impact forecasting, opportunity cost analysis, and scooping risk assessment. |
-| **Brainstormer** | Enhanced creative brainstormer with explicit focus on cross-field connections, "strategic ignorance" (challenging flawed assumptions the field follows uncritically), and the skeptical-reader test. |
+| **Brainstormer** | Creative brainstormer with emphasis on cross-field connections, strategic ignorance (challenging flawed assumptions), and surprising ideas. |
+| **Idea Deepener** | Takes rough brainstorm-level ideas and fleshes them out into concrete one-pager elevator pitches. |
+| **Paper Crawler** | Systematic collection of related papers from DBLP and OpenAlex APIs. |
+| **Research Analyst** | Maps the research landscape around an idea — closest related work, landscape density, key differentiators. |
+| **Idea Critic** | Stress-tests research ideas along 6 dimensions: novelty, impact, timing, feasibility, the nugget, and narrative potential. Returns a Pursue / Park / Kill verdict. |
+| **Idea Reviser** | Revises a pitch based on landscape analysis and evaluation feedback — generates a meaningful variation addressing identified weaknesses. |
+| **Proposal Drafter** | Expands a one-pager into a concrete two-page research proposal with draft abstract, conclusion-first test, and experimental plan. |
+| **Research Strategist** | On-demand project-level strategic thinking — triage (continue/pivot/kill), comparative advantage mapping, impact forecasting, and scooping risk assessment. |
 
 ### Skill
 
 | Skill | What it does |
 |-------|-------------|
-| `/research-companion` | A structured multi-phase ideation session that orchestrates all three agents through: **Seed** → **Diverge** → **Evaluate** → **Deepen** → **Frame** → **Decide**. Includes Carlini's "conclusion-first test." |
+| `/research-companion` | A structured multi-phase ideation session that orchestrates specialized agents through: **Seed** → **Diverge** → **Deepen** → **Compare** → **Evaluate** → **Finalize**. Includes researcher checkpoints, a revision loop, and Carlini's conclusion-first test. |
 
 ### Principles
 
 8 research strategy principles organized into three categories (Problem Selection, Execution Strategy, Strategic Positioning) that guide the agents' evaluations.
-
-### Codex Support
-
-This repository also includes a native Codex plugin manifest and interface metadata:
-
-- `.codex-plugin/plugin.json`
-- `agents/openai.yaml`
-- `.agents/plugins/marketplace.json`
-
-The same core prompts, agents, and principles are shared across Claude Code and Codex, with the orchestration instructions written to degrade gracefully if delegated subagents are unavailable.
-
-Codex supports plugin marketplaces and installation through the Plugin Directory. This repo now includes a repo-scoped marketplace file so the plugin can be installed after cloning, without manually creating marketplace JSON. Detailed Codex setup lives in [docs/codex-installation.md](./docs/codex-installation.md).
 
 ## Installation
 
 ### Claude Code
 
 ```bash
-claude plugin marketplace add https://github.com/andrehuang/research-companion
-claude plugin install research-companion@andrehuang-research-companion
+claude plugin marketplace add https://github.com/frasalvi/research-companion
+claude plugin install research-companion@frasalvi-research-companion
+
 ```
 
-### Codex
-
-See [docs/codex-installation.md](./docs/codex-installation.md) for the full Codex installation guide, including:
-
-- repo marketplace installation
-- personal local marketplace installation
-- official Codex plugin docs links
 
 ## Usage
 
@@ -80,7 +67,7 @@ I'm thinking about studying how LLM-generated code introduces subtle security
 vulnerabilities that pass standard code review. Can you evaluate this idea?
 ```
 
-The **Idea Critic** will evaluate across 7 dimensions and give you a verdict with the single most important question to resolve next.
+The **Idea Critic** will evaluate across 6 dimensions and give you a verdict.
 
 ### Decide whether to continue a project
 
@@ -101,21 +88,14 @@ In Claude Code:
 and scientific discovery
 ```
 
-In Codex:
-
-```
-$research-companion I'm interested in the intersection of program synthesis
-and scientific discovery
-```
-
 This launches a 6-phase guided session:
 
 1. **Seed** — Understand your problem space, interests, and what bugs you about the field
 2. **Diverge** — Generate ideas, alternative framings, and cross-field connections
-3. **Evaluate** — Stress-test the top 2-3 ideas with the Idea Critic
-4. **Deepen** — Check novelty, positioning, and competitive landscape
-5. **Frame** — Write the abstract and conclusion as if the paper is done (the conclusion-first test: if you can't write a compelling conclusion now, the idea isn't ready)
-6. **Decide** — Final assessment with next steps (starting with the single riskiest assumption to test first)
+3. **Deepen** — Flesh out the top 2-3 ideas into concrete one-pager elevator pitches
+4. **Compare** — Map the research landscape: related work, closest competitors, landscape density
+5. **Evaluate** — Stress-test ideas along 6 dimensions, deliver Pursue / Park / Kill verdicts. You decide per idea: advance, revise, or drop.
+6. **Finalize** — Expand surviving ideas into two-page research proposals with draft abstract, conclusion-first test, and experimental plan
 
 ### Find cross-field connections
 
@@ -135,19 +115,18 @@ Area Chair say?
 
 The **Idea Critic** will identify the strongest counter-arguments, the weakest assumptions, and what a hostile but fair reviewer would target.
 
-## The 7 Evaluation Dimensions
+## The 6 Evaluation Dimensions
 
 When the Idea Critic evaluates your research idea, it assesses:
 
 | # | Dimension | Key Question |
 |---|-----------|-------------|
 | 1 | **Novelty** | If you don't do this, how long until someone else does? |
-| 2 | **Impact** | Can you write a compelling conclusion *right now*, without doing the work? |
+| 2 | **Impact** | If this works perfectly, would anyone care? |
 | 3 | **Timing** | Is the field ready for this? Too early? Already crowded? |
 | 4 | **Feasibility** | What's the single riskiest assumption? Can you test it in a week? |
-| 5 | **Competitive Landscape** | Who else is working on this? What's your unfair advantage? |
-| 6 | **The Nugget** | Can you state the key insight in one sentence? |
-| 7 | **Narrative Potential** | Can you tell a story that makes a skeptical reader care? |
+| 5 | **The Nugget** | Can you state the key insight in one sentence? |
+| 6 | **Narrative Potential** | Can you tell a story that makes a skeptical reader care? |
 
 ## The 8 Research Strategy Principles
 
@@ -167,17 +146,20 @@ These principles, derived from patterns in high-impact research, guide all agent
 - **RS7: Comparative Advantage** — "Research space is high-dimensional; find your unique corner"
 - **RS8: Timing Awareness** — "Impact = skill x domain importance at this moment"
 
-## Persistent Evaluations (NEW in v1.1)
+## Idea Directories
 
-Evaluation results are now **saved to disk** so they persist across sessions:
+Each idea gets its own directory under `research-ideas/` containing all artifacts from the pipeline:
 
-- After each session, verdicts are written to `research-evaluations/YYYY-MM-DD-<topic>.md`
-- On subsequent sessions, the system **checks for prior evaluations** of similar topics before starting fresh
-- PARK'd ideas include "revisit conditions" — what would need to change to reconsider
-- The Research Strategist now outputs a **watch list** (search terms, key researchers, venues to monitor) for competitive tracking
-- The Idea Critic checks for prior evaluations to avoid re-evaluating killed ideas unless conditions have changed
+```text
+research-ideas/<idea-slug>/
+  pitch.md              # One-pager elevator pitch
+  papers.json           # Collected papers from academic APIs
+  landscape.md          # Landscape analysis (related work, density)
+  evaluation.md         # Idea critic evaluation and verdict
+  proposal.md           # Two-page research proposal (if advanced)
+```
 
-This means your research thinking accumulates over time rather than starting from scratch each session.
+Everything for one idea lives together — no file collisions when evaluating multiple ideas in parallel.
 
 ## Pairs Well With
 
