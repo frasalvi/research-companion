@@ -25,14 +25,14 @@ Most brainstorming produces lists of ideas that go nowhere. This session is diff
 
 | Agent                   | `subagent_type`       | Role in Session                                                         |
 | ----------------------- | --------------------- | ----------------------------------------------------------------------- |
-| **Brainstormer**        | `brainstormer`        | Phase 2: Generate ideas, cross-field connections, challenge assumptions  |
-| **Idea Deepener**       | `idea-deepener`       | Phase 3: Flesh out rough ideas into concrete one-pager elevator pitches  |
-| **Paper Crawler**       | `paper-crawler`       | Phase 4: Systematic collection of related papers from academic APIs      |
-| **Research Analyst**    | `research-analyst`    | Phase 4: Analyze collected papers in context of the idea                 |
-| **Idea Critic**         | `idea-critic`         | Phase 5: Stress-test ideas along 6 dimensions, deliver verdict           |
-| **Idea Reviser**        | `idea-reviser`        | Revision loop: Revise a pitch based on evaluation feedback               |
-| **Proposal Drafter**    | `proposal-drafter`    | Phase 6: Expand one-pager into two-page research proposal                |
-| **Research Strategist** | `research-strategist` | On-demand: Project triage, timing, scooping risk (not in standard flow)  |
+| **Brainstormer**        | `brainstormer`        | Phase 2: Generate ideas, cross-field connections, challenge assumptions |
+| **Idea Deepener**       | `idea-deepener`       | Phase 3: Flesh out rough ideas into concrete one-pager elevator pitches |
+| **Paper Crawler**       | `paper-crawler`       | Phase 4: Systematic collection of related papers from academic APIs     |
+| **Research Analyst**    | `research-analyst`    | Phase 4: Analyze collected papers in context of the idea                |
+| **Idea Critic**         | `idea-critic`         | Phase 5: Stress-test ideas along 6 dimensions, deliver verdict          |
+| **Idea Reviser**        | `idea-reviser`        | Revision loop: Revise a pitch based on evaluation feedback              |
+| **Proposal Drafter**    | `proposal-drafter`    | Phase 6: Expand one-pager into two-page research proposal               |
+| **Research Strategist** | `research-strategist` | On-demand: Project triage, timing, scooping risk (not in standard flow) |
 
 ## Idea Directory Structure
 
@@ -226,6 +226,37 @@ Each agent produces a two-page proposal that includes:
 2. Present the proposals to the researcher
 3. Ask: "Does this feel like a paper you'd be excited to write? Does the conclusion feel important?"
 4. If the conclusion feels hollow or generic, say so directly — the idea may need revision
+
+---
+
+## Post-Session: Reflect and Learn
+
+After the pipeline completes (or ends early), do two things:
+
+### 1. Save Session Learnings
+
+Reflect on the session and save any non-obvious insights to memory that would help future sessions. Focus on:
+
+- **Researcher preferences** discovered during the session — e.g., "prefers theoretical framings over empirical ones", "cares more about novelty than feasibility". Save as `user` or `feedback` memories.
+- **Domain insights** that aren't obvious from the code — e.g., "in this subfield, timing matters more than novelty because the community is small and fast-moving". Save as `project` memories.
+
+**Don't save:** session-specific details (which ideas were discussed, what the verdicts were) — those are already in the idea directories. Only save things that generalize to future sessions.
+
+### 2. Self-Reflect on the Pipeline
+
+Briefly reflect on whether the pipeline itself worked well in this session. Consider:
+
+- Did any phase produce low-value output or feel redundant for this type of problem?
+- Did any phase feel too slow, or was a checkpoint unnecessary friction?
+- Was the revision loop used? Did it produce meaningfully better ideas, or was it churn?
+- Was anything missing — a capability, a question, a type of analysis that would have helped?
+- Did the agents' outputs align well with each other, or were there gaps in the handoffs?
+
+If you identify concrete improvements, present them to the researcher as suggestions:
+
+> **Pipeline feedback:** During this session, I noticed [observation]. A potential improvement would be [specific change to SKILL.md or an agent prompt]. Want me to make this change?
+
+Only suggest changes you're confident about — not vague "maybe we could..." ideas. The researcher can choose to apply them or not.
 
 ---
 
