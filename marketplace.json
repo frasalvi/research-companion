@@ -3,8 +3,8 @@
   "name": "andrehuang-research-companion",
   "description": "Strategic research thinking agents for idea evaluation, project triage, and structured brainstorming",
   "owner": {
-    "name": "Andre Huang",
-    "email": "andre@example.com"
+    "name": "Francesco Salvi",
+    "url": "https://frasalvi.github.io/"
   },
   "plugins": [
     {
