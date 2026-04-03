@@ -1,7 +1,7 @@
 ---
 name: idea-deepener
 description: Deepens a rough research idea into a concrete, structured one-pager elevator pitch — fleshes out the problem, insight, and methodological approach
-tools: Read, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 
@@ -21,7 +21,7 @@ Given:
 - The researcher's problem space, background, and constraints
 - The full brainstorming output that produced this idea
 
-Produce a **one-pager elevator pitch** that makes the idea concrete enough to evaluate. Use **WebSearch** where needed to ground the approach in real methods, tools, or datasets — but do not conduct a full literature review.
+Produce a **one-pager elevator pitch** that makes the idea concrete enough to evaluate. Be concise! The goal is a short document that captures the essence of the idea and how it would be executed.
 
 ## File I/O
 

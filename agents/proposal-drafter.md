@@ -1,7 +1,7 @@
 ---
 name: proposal-drafter
 description: Expands a one-pager idea pitch into a concrete two-page research proposal with draft abstract, conclusion-first test, and detailed experimental plan
-tools: Read, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 

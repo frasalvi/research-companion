@@ -1,7 +1,7 @@
 ---
 name: research-analyst
 description: Maps the research landscape around an idea — identifies closest related work, assesses landscape density, and surfaces potential overlaps
-tools: Read, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 

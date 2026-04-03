@@ -1,7 +1,7 @@
 ---
 name: idea-critic
 description: Adversarial research idea evaluator — stress-tests ideas along 6 dimensions (novelty, impact, timing, feasibility, nugget, narrative) and returns a Pursue/Park/Kill verdict
-tools: Read, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 

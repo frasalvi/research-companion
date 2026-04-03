@@ -105,11 +105,12 @@ Deploy **idea-deepener** agents in parallel — one per selected idea. Each agen
 - The researcher's background, constraints, and problem space from Phase 1
 - The related brainstorming output from Phase 2 (for context on how the idea was generated)
 
+Each agent saves its output to `research-ideas/<idea-slug>/pitch.md`.
+
 **After the agents return:**
 
 1. Present the one-pagers to the researcher
-2. Save each as `research-ideas/<idea-slug>/pitch.md`
-3. Ask the researcher to review and refine — especially the **Key Insight** and **Proposed Approach**, which are the hardest to get right from the outside
+2. Ask the researcher to review and refine — especially the **Key Insight** and **Proposed Approach**, which are the hardest to get right from the outside
 
 **Checkpoint:** Before proceeding, ask: "Any ideas that didn't come together as a one-pager? We can drop them now before investing in the literature search." The researcher decides which ideas advance to Phase 4.
 
@@ -131,7 +132,7 @@ Deploy agents in two stages per idea (parallel across ideas):
 - The collected papers (`research-ideas/<idea-slug>/papers.json`)
 - Instruction: focus on identifying the closest existing work, key differences, and overall landscape density
 
-Save each analyst's output to `research-ideas/<idea-slug>/landscape.md`.
+Each agent saves its output to `research-ideas/<idea-slug>/landscape.md`.
 
 **Present to the researcher:**
 
@@ -154,7 +155,7 @@ Deploy **idea-critic** agents — one per idea, in parallel. Each gets:
 - The researcher's background and constraints from Phase 1
 - Explicit instruction: use the landscape analysis for novelty, timing, and competition assessment — do not redo the literature search
 
-Save each critic's output to `research-ideas/<idea-slug>/evaluation.md`.
+Each agent saves its output to `research-ideas/<idea-slug>/evaluation.md`.
 
 Present the evaluations side by side:
 
@@ -189,7 +190,7 @@ For ideas the researcher chooses to REVISE:
    - The landscape analysis (`research-ideas/<idea-slug>/landscape.md`)
    - The evaluation (`research-ideas/<idea-slug>/evaluation.md`)
    - Any notes from the researcher on what direction to take
-2. The reviser produces a new pitch addressing the evaluation feedback. Save it as the updated `research-ideas/<idea-slug>/pitch.md`.
+2. The reviser produces a revised pitch and saves it as the updated `research-ideas/<idea-slug>/pitch.md`.
 3. Present the revised pitch to the researcher for review.
 4. Re-enter the pipeline at **Phase 4** (COMPARE) for the revised idea — the landscape may have shifted if the approach changed significantly.
 
@@ -220,12 +221,13 @@ Each agent produces a two-page proposal that includes:
 - **Related work context** (positioning against key prior work from Phase 4)
 - **Open questions** (honest gaps in the plan)
 
+Each agent saves its output to `research-ideas/<idea-slug>/proposal.md`.
+
 **After the agents return:**
 
-1. Save each proposal to `research-ideas/<idea-slug>/proposal.md`
-2. Present the proposals to the researcher
-3. Ask: "Does this feel like a paper you'd be excited to write? Does the conclusion feel important?"
-4. If the conclusion feels hollow or generic, say so directly — the idea may need revision
+1. Present the proposals to the researcher
+2. Ask: "Does this feel like a paper you'd be excited to write? Does the conclusion feel important?"
+3. If the conclusion feels hollow or generic, say so directly — the idea may need revision
 
 ---
 

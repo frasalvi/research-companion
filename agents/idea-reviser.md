@@ -1,7 +1,7 @@
 ---
 name: idea-reviser
 description: Revises a research idea pitch based on landscape analysis and evaluation feedback — generates a meaningful variation that addresses identified weaknesses
-tools: Read, Glob, Grep, WebSearch, WebFetch
+tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 model: opus
 ---
 
