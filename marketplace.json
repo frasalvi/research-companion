@@ -12,9 +12,15 @@
       "description": "Idea critic, research strategist, enhanced brainstormer, and structured brainstorming skill for research ideation",
       "source": "./",
       "category": "productivity",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "license": "MIT",
-      "keywords": ["research", "brainstorming", "strategy", "academic", "idea-evaluation"]
+      "keywords": [
+        "research",
+        "brainstorming",
+        "strategy",
+        "academic",
+        "idea-evaluation"
+      ]
     }
   ]
 }

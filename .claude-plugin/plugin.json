@@ -1,6 +1,6 @@
 {
   "name": "research-companion",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Strategic research thinking agents — idea evaluation, project triage, and structured brainstorming inspired by Carlini's research methodology",
   "author": {
     "name": "Andre Huang",
@@ -8,5 +8,11 @@
   },
   "repository": "https://github.com/andrehuang/research-companion",
   "license": "MIT",
-  "keywords": ["research", "brainstorming", "idea-evaluation", "strategy", "academic"]
+  "keywords": [
+    "research",
+    "brainstorming",
+    "idea-evaluation",
+    "strategy",
+    "academic"
+  ]
 }
