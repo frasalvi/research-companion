@@ -1,9 +1,8 @@
 {
-  "name": "andrehuang-research-companion",
+  "name": "frasalvi-research-companion",
   "description": "Strategic research thinking agents for idea evaluation, project triage, and structured brainstorming",
   "owner": {
-    "name": "Andre Huang",
-    "email": "andre@example.com"
+    "name": "Francesco Salvi"
   },
   "plugins": [
     {
@@ -13,7 +12,13 @@
       "category": "productivity",
       "version": "1.0.0",
       "license": "MIT",
-      "keywords": ["research", "brainstorming", "strategy", "academic", "idea-evaluation"]
+      "keywords": [
+        "research",
+        "brainstorming",
+        "strategy",
+        "academic",
+        "idea-evaluation"
+      ]
     }
   ]
 }

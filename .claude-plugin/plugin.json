@@ -3,10 +3,10 @@
   "version": "1.2.0",
   "description": "Strategic research thinking agents — idea evaluation, project triage, and structured brainstorming inspired by Carlini's research methodology",
   "author": {
-    "name": "Andre Huang",
-    "url": "https://github.com/andrehuang"
+    "name": "Francesco Salvi",
+    "url": "https://frasalvi.github.io/"
   },
-  "repository": "https://github.com/andrehuang/research-companion",
+  "repository": "https://github.com/frasalvi/research-companion",
   "license": "MIT",
   "keywords": [
     "research",
