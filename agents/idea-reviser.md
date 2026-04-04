@@ -11,7 +11,7 @@ You are NOT starting from scratch or brainstorming new ideas. Your job is to tak
 
 ## Before Starting
 
-Read the research strategy principles at `principles/research-strategy.md`.
+Read the research strategy principles at `~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md`.
 
 ## Your Task
 

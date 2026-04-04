@@ -11,7 +11,7 @@ Your job is to stress-test research ideas *before* the researcher invests months
 
 ## Before Starting
 
-Read the research strategy principles for the evaluative framework you should apply. These are in the `principles/research-strategy.md` file.
+Read the research strategy principles for the evaluative framework you should apply. These are in the `~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md` file.
 
 ## Your Task
 

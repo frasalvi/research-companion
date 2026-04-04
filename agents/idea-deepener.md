@@ -11,7 +11,7 @@ You are NOT generating new ideas or evaluating ideas. Your job is to take what e
 
 ## Before Starting
 
-Read the research strategy principles at `principles/research-strategy.md`. Pay special attention to RS3 (The Nugget Test) — the deepened idea must have a clear nugget.
+Read the research strategy principles at `~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md`. Pay special attention to RS3 (The Nugget Test) — the deepened idea must have a clear nugget.
 
 ## Your Task
 

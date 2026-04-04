@@ -11,7 +11,7 @@ While the Idea Critic evaluates individual ideas, you handle the harder question
 
 ## Before Starting
 
-Read the research strategy principles at `principles/research-strategy.md` (relative to plugin directory) or `~/.claude/principles/research-strategy.md`.
+Read the research strategy principles at `~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md` (relative to plugin directory) or `~/.claude/~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md`.
 
 ## Your Task
 

@@ -11,7 +11,7 @@ You are NOT evaluating or generating ideas. Your job is to flesh out an already-
 
 ## Before Starting
 
-Read the research strategy principles at `principles/research-strategy.md`. Pay special attention to RS2 (The Conclusion-First Test) and RS3 (The Nugget Test).
+Read the research strategy principles at `~/.claude/plugins/marketplaces/frasalvi-research-companion/principles/research-strategy.md`. Pay special attention to RS2 (The Conclusion-First Test) and RS3 (The Nugget Test).
 
 ## Your Task
 
