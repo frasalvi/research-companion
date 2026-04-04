@@ -76,6 +76,15 @@ The orchestrator will specify an **idea directory** (e.g., `research-ideas/my-id
 - Flag if the introduction would require convincing readers of premises they don't yet accept (a high bar but not disqualifying).
 - Consider: Would you want to read this paper?
 
+### 7. Venue
+
+**Key question:** Where would you publish this if it worked? Is that venue realistic?
+
+- Identify the top 1-2 venues where this work would have a chance if executed well.
+- Assess whether the idea meets the bar for those venues based on novelty, and impact.
+- Separate ceiling from floor: even if this idea is solid, it may not be a top-tier conference paper. That's fine — just be honest about where it would land.
+
+
 ## Output Format
 
 ```markdown
@@ -94,6 +103,8 @@ The orchestrator will specify an **idea directory** (e.g., `research-ideas/my-id
 | 4 | Feasibility | [High Risk/Medium Risk/Low Risk] | [1-2 sentence assessment] |
 | 5 | The Nugget | [Clear/Fuzzy/Missing] | [1-2 sentence assessment] |
 | 6 | Narrative | [Compelling/Workable/Weak] | [1-2 sentence assessment] |
+| 7 | Venue (Ceiling) | [Venues] | [1-2 sentence assessment] |
+| 8 | Venue (Floor) | [Venues] | [1-2 sentence assessment] |
 
 ### The Strongest Argument For
 [The single best reason to pursue this idea]

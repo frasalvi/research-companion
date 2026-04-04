@@ -16,90 +16,91 @@ When deployed by the orchestrator, follow these steps:
 ### Step 1: Parse input
 
 Extract from the deployment prompt:
-- **Topic**: the research area to search (e.g., "domain generalization", "test-time adaptation")
-- **Output directory**: where to save results (e.g., `research-ideas/my-idea/`). Create it if it doesn't exist.
-- **Venues** (optional): comma-separated venue names to search (default: NeurIPS, ICML, ICLR, CVPR, ICCV, ECCV)
-- **Years** (optional): year range (default: 2022-2025)
+- **Topic**: the research area to search
+- **Search terms**: specific query strings to use (if provided)
+- **Output directory**: where to save results. Create it if it doesn't exist.
+- **Years** (optional): year range (default: 2020-2026)
 - **Classify** (optional): whether to classify papers after collection
 
-### Step 2: Build query templates
+### Step 2: Build query list
 
-Generate query strings by combining the topic with venue-year pairs:
-```
-"{venue} {year} {topic}"
-```
+Generate query strings from the topic and any provided search terms. For each concept cluster:
+- The exact phrase provided
+- 1-2 closely related phrasings
 
-For broad topics, also generate variant queries:
-- The user's exact topic phrase
-- Closely related phrasings (e.g., "domain generalization" -> also "domain shift", "distribution shift")
+Aim for 15-35 total queries. More queries = better coverage but slower.
 
-### Step 3: Query APIs
+### Step 3: Query APIs using WebFetch
 
-Query **both** APIs for each query string (no auth needed for either):
+For each query, call **both** APIs using the `WebFetch` tool. **Do NOT write Python scripts for API calls — use WebFetch directly.**
 
 #### DBLP API
+
+Use WebFetch to fetch:
 ```
-GET https://dblp.org/search/publ/api?q={query}&format=json&h=100
+https://dblp.org/search/publ/api?q={url-encoded-query}&format=json&h=50
 ```
-Extract: title, venue, year, authors, DOI/URL from `result.hits.hit[].info`
+
+From the JSON response, extract papers from `result.hits.hit[].info`:
+- `title`: the paper title
+- `authors.author`: list of author names (may be a single dict or array)
+- `venue`: venue name
+- `year`: publication year
+- `ee`: electronic edition URL
+- `doi`: DOI if available
 
 #### OpenAlex API
+
+Use WebFetch to fetch:
 ```
-GET https://api.openalex.org/works?search={query}&filter=publication_year:{year}&per_page=100
-```
-Extract: title, venue (host_venue.display_name), year, abstract (from abstract_inverted_index), DOI
-
-**Rate limits**: DBLP allows ~1 req/sec. OpenAlex allows 10 req/sec unauthenticated (be polite, use 2 req/sec).
-
-### Step 4: Deduplicate
-
-Normalize titles (lowercase, strip non-alphanumeric) and deduplicate across all queries and both APIs.
-
-### Step 5: Output
-
-Write results to `papers.json` in the specified output directory:
-```json
-[
-  {
-    "title": "...",
-    "authors": ["..."],
-    "venue": "...",
-    "year": 2024,
-    "abstract": "...",
-    "url": "...",
-    "source_api": "dblp|openalex",
-    "source_query": "..."
-  }
-]
+https://api.openalex.org/works?search={url-encoded-query}&filter=publication_year:2019-2026&per_page=50&sort=relevance_score:desc&mailto=research@example.com
 ```
 
-Report summary: total papers found, per-venue counts, per-year counts.
+From the JSON response, extract papers from `results[]`:
+- `title`: paper title
+- `authorships[].author.display_name`: author names
+- `primary_location.source.display_name`: venue
+- `publication_year`: year
+- `doi`: DOI URL
+- `abstract_inverted_index`: reconstruct abstract by sorting word-position pairs by position
 
-### Step 6 (optional): Classify
+**Rate limiting**: Wait at least 1 second between DBLP calls. OpenAlex is more permissive but still pause 0.5s between calls.
 
-If classification is requested, classify each paper relative to the research idea being investigated:
+**Batch strategy**: You can make multiple WebFetch calls in a single message if they are to different APIs or different queries. Process results after each batch.
 
-1. **Relevance**: **high** (directly addresses the same problem or approach), **medium** (related problem or method), **low** (tangentially related) — filter out low-relevance papers
-2. **Relation**: How does this paper relate to the idea? One of: **prior art** (did something similar), **builds-on** (the idea extends this), **alternative** (different approach to the same problem), **context** (useful background)
-3. **Brief summary**: 1-sentence description of the paper's contribution
+### Step 4: Deduplicate and accumulate
 
-Write classifications to `classifications.json` in the same output directory.
+As you collect papers, deduplicate by normalized title (lowercase, strip non-alphanumeric characters). Keep a running count and report progress periodically.
 
-## Implementation notes
+### Step 5: Save raw results
 
-- Use `curl` or `WebFetch` for API calls
-- Sleep 1s between DBLP requests, 0.5s between OpenAlex requests
-- OpenAlex abstract comes as an inverted index — reconstruct by sorting by position
-- If a query returns 0 results, try relaxing it (drop venue prefix, broaden terms)
-- Print progress as you go: `[12/48] Querying: NeurIPS 2024 domain generalization (47 new papers)`
+Write all collected papers to `papers_raw.json` in the output directory. For large JSON files, write a short inline Python script or write to a temp .py file and execute it with that path.
 
-## Example
+### Step 6: Score and curate
 
-Deployment prompt: "collect papers on out-of-distribution detection from NeurIPS, ICML, ICLR for 2023-2025"
+Review the collected papers and assign relevance scores based on the research idea:
+- **high**: directly addresses the same problem, approach, or mechanism
+- **medium**: related problem or method, useful for positioning
+- **low**: tangentially related — exclude from final output
 
-This will:
-1. Generate 9 query combinations (3 venues x 3 years)
-2. Query DBLP and OpenAlex for each (18 API calls)
-3. Deduplicate results
-4. Save to `papers.json`
-5. Print summary
+For high and medium papers, add:
+- `relevance`: "high" or "medium"
+- `relevance_note`: 1-sentence explanation of how it relates to the idea
+
+Write the curated set (high + medium only) to `papers.json` in the output directory.
+
+### Step 7: Report summary
+
+Print a summary: total papers collected, papers after curation, counts by year and by relevance level.
+
+## Key author searches
+
+When key authors are provided, also search for their recent work directly:
+- DBLP: `https://dblp.org/search/publ/api?q=author:{author_name}&format=json&h=30`
+- OpenAlex: `https://api.openalex.org/works?filter=authorships.author.display_name.search:{author_name},publication_year:2019-2026&per_page=30&sort=relevance_score:desc`
+
+## Troubleshooting
+
+- If WebFetch fails or times out on a specific query, retry once. If it fails again, skip that query and note it in your summary.
+- If WebFetch is entirely unavailable, fall back to `curl` via Bash (curl is available on this machine).
+- If a query returns 0 results, try relaxing it (drop venue prefix, broaden terms, try alternate phrasing).

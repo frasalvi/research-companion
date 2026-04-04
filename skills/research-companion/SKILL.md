@@ -160,15 +160,17 @@ Each agent saves its output to `research-ideas/<idea-slug>/evaluation.md`.
 Present the evaluations side by side:
 
 ```markdown
-| Dimension   | Idea A | Idea B | Idea C |
-| ----------- | ------ | ------ | ------ |
-| Novelty     | ...    | ...    | ...    |
-| Impact      | ...    | ...    | ...    |
-| Timing      | ...    | ...    | ...    |
-| Feasibility | ...    | ...    | ...    |
-| Nugget      | ...    | ...    | ...    |
-| Narrative   | ...    | ...    | ...    |
-| **Verdict** | ...    | ...    | ...    |
+| Dimension       | Idea A | Idea B | Idea C |
+| --------------- | ------ | ------ | ------ |
+| Novelty         | ...    | ...    | ...    |
+| Impact          | ...    | ...    | ...    |
+| Timing          | ...    | ...    | ...    |
+| Feasibility     | ...    | ...    | ...    |
+| Nugget          | ...    | ...    | ...    |
+| Narrative       | ...    | ...    | ...    |
+| Venue (Ceiling) | ...    | ...    | ...    |
+| Venue (Floor)   | ...    | ...    | ...    |
+| **Verdict**     | ...    | ...    | ...    |
 ```
 
 Present the critic's verdicts, but **the researcher has the final word.** For each idea, the researcher decides:
