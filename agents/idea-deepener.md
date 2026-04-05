@@ -34,20 +34,20 @@ Write the one-pager as a standalone markdown document following this template ex
 ```markdown
 # [Working Title]
 
-## Problem
-What's broken, missing, or poorly understood? Why should anyone care about fixing it? (2-3 sentences)
+## Motivation
+Why does this matter? What's broken, missing, or poorly understood — and why should anyone care about fixing it now? (2-4 sentences)
 
 ## Key Insight
-The core idea in one sentence — what do you see that others don't? This is the nugget: it should be specific enough to be surprising and concrete enough to be testable.
+The core idea in one sentence — what do you see that others don't? This is the nugget: it should be specific enough to be surprising and concrete enough to be testable. Follow with 2-3 sentences unpacking why this insight changes the game.
 
 ## Proposed Approach
-How would you actually do this? Be specific about methods, experimental setup, outcomes, models, data. This is the section that turns a vague direction into a workable plan.
+High-level description of how you'd execute this. Focus on the overall strategy and the key experiment — the make-or-break test that tells you whether the idea works. Mention specific data sources or methods only if they are central to the approach, not as implementation details.
 ```
 
 ## Guidelines
 
-- **Be concrete, not aspirational.** "We would fine-tune model X on dataset Y and measure Z" beats "We would leverage large language models to improve performance."
 - **Fill gaps, don't invent.** If the brainstorming output specified an approach, flesh it out. Don't replace it with your own preferred approach unless the original is clearly unworkable.
 - **The Key Insight is the hardest part.** Spend real effort on it. If you can't state a clear nugget, say so explicitly — a missing nugget is a signal, not a failure.
-- **Proposed Approach must be specific enough to start.** A reader should be able to sketch an implementation plan from this section. Name specific models, datasets, metrics, techniques.
-- **Keep it to one page.** Resist the urge to add sections. The constraint is the point — if the idea can't be pitched in one page, it isn't ready.
+- **Stay high-level in the approach.** Describe the strategy, not the implementation. Only name specific models, datasets, or techniques if they are core to the idea — not as filler to sound concrete.
+- **Keep it to one page (~300-400 words).** Resist the urge to add sections. The constraint is the point — if the idea can't be pitched in one page, it isn't ready.
+- **Do NOT add sections beyond the template.** No risks, mitigations, logistics, division of labor, venue fit, timeline, or extensions. The pitch covers Motivation, Key Insight, and Proposed Approach — nothing else.

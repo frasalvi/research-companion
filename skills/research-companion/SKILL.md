@@ -93,6 +93,25 @@ Ask the researcher to **star their top 2-3 ideas** (or add their own).
 
 ---
 
+### Phase 2.5: EXPAND — Short Pitches Before Committing
+
+**Goal:** Give the researcher a better sense of each starred idea before committing to the full deepening process. This is a lightweight, fast step — no agents needed.
+
+**Why this phase exists:** The one-liners from Phase 2 are too vague for the researcher to make an informed selection. But running full idea-deepener agents (Phase 3) is expensive. This intermediate step lets the researcher see each idea as a short elevator pitch and drop weak ones before investing in full one-pagers and literature searches.
+
+**For each starred idea, write directly (no agent):**
+- One sentence on the motivation and problem framing: why does this matter?
+- One sentence on the novelty / key idea: what's the insight?
+- A short paragraph on the proposed approach: what you'd concretely build, what data, what the key experiment would be
+
+**Keep each pitch to ~100-150 words.** This is a quick expansion, not a full deepening.
+
+**After presenting all expanded pitches, ask:** "Now that you see these fleshed out a bit more, which ones do you want to take to full one-pagers? Any you want to drop, merge, or modify?"
+
+The researcher's selections from this step are what advance to Phase 3.
+
+---
+
 ### Phase 3: DEEPEN — Flesh Out the Survivors
 
 **Goal:** Turn each selected idea from a rough bullet into a concrete, structured one-pager elevator pitch — detailed enough for honest evaluation in Phase 4.
@@ -104,6 +123,8 @@ Deploy **idea-deepener** agents in parallel — one per selected idea. Each agen
 - The idea as selected/described by the researcher
 - The researcher's background, constraints, and problem space from Phase 1
 - The related brainstorming output from Phase 2 (for context on how the idea was generated)
+
+**IMPORTANT: Do NOT ask the agent to produce sections beyond what its prompt template specifies (Problem, Key Insight, Proposed Approach).** Do not add requests for risks, mitigations, division of labor, venue fit, extensions, or any other project-management content. The pitch is about the *idea*, not the logistics. The agent's own prompt already enforces this — do not override it with extra instructions.
 
 Each agent saves its output to `research-ideas/<idea-slug>/pitch.md`.
 
@@ -141,6 +162,31 @@ Each agent saves its output to `research-ideas/<idea-slug>/landscape.md`.
 - Any work that is dangerously close — potential overlaps or prior art that the idea must clearly differentiate from
 
 **Checkpoint:** Before proceeding, ask: "Based on the landscape, any ideas you want to drop before we evaluate? Any that look clearly scooped or too crowded?" The researcher decides which ideas advance to Phase 5.
+
+---
+
+### Phase 4.5: SYNTHESIZE — Look Across Ideas (if applicable)
+
+**Goal:** When multiple surviving ideas share a problem space or have overlapping landscapes, step back and synthesize before evaluating each in isolation.
+
+**When to trigger:** This phase is relevant when 2+ ideas have substantial overlap in their landscapes — similar related work, similar positioning challenges, or complementary strengths. If the ideas are genuinely independent (different fields, different methods, different literatures), skip to Phase 5.
+
+**What to do (no agent — do this yourself):**
+
+1. Read all landscape analyses together. Identify:
+   - **Common blind spots**: gaps that appear across all landscapes (e.g., "nobody does downstream evaluation")
+   - **Shared threats**: related work that threatens multiple ideas simultaneously
+   - **Complementary strengths**: where one idea's weakness is another's strength
+   - **Convergence opportunities**: could two ideas merge into something stronger than either alone?
+
+2. Present a short synthesis to the researcher covering:
+   - What the landscapes collectively reveal about the state of the field
+   - Whether any ideas are better understood as components of a larger project rather than standalone papers
+   - An honest assessment of which ideas have the most defensible novelty given the shared landscape
+
+3. Ask the researcher: "Given this cross-cutting view, do you want to merge any ideas, reframe the project structure, or proceed to evaluate each independently?"
+
+**This phase exists because evaluating related ideas in isolation inflates each one's apparent novelty.** The critic agents don't see the other ideas — they can't tell you that three "PURSUE" verdicts in the same crowded space should really be one "PURSUE" and two "PARK." The synthesis step catches this before wasted evaluation effort.
 
 ---
 
